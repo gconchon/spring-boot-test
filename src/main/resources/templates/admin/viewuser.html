@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Creation of a user</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" href="../../css/bootstrap-theme.min.css" />
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+<dl class="dl-horizontal">
+  <dt>Prénom</dt>
+  <dd th:text="${user.firstname}">${user.firstname}</dd>
+
+  <dt>Nom</dt>
+  <dd th:text="${user.lastname}">${user.lastname}</dd>
+  
+  <dt>Email</dt>
+  <dd th:text="${user.email}">${user.email}</dd>
+  
+  <dt>Profil</dt>
+  <dd th:text="${user.profile}">${user.profile}</dd>
+  
+  <dt>Date</dt>
+  <dd th:text="${{user.creationDate}}">${user.creationDate}</dd>
+</dl>
+</div>
+</body>
+</html>

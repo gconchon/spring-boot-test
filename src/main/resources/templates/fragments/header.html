@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
+
+<script th:src="@{/js/jquery-2.1.3.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<style type="text/css" th:fragment="styles">
+body { padding-top: 50px; }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" th:fragment="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Engine</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Standards<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">Exporter les données</a></li>
+          <li><a href="#">Tableaux de bords</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administration <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="/user">Utilisateurs</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Aide</a></li>
+      <li class="active"><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
+    </ul>
+  </div>
+</nav>
+</body>
+</html>

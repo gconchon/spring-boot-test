@@ -6,8 +6,12 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
 <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" href="../../css/bootstrap-theme.min.css" />
 <script th:src="@{/js/bootstrap.min.js}"></script>
+
+<style type="text/css" th:include="fragments/header :: styles"></style>
 </head>
 <body>
+<div th:replace="fragments/header :: navbar"></div>
+
 <div class="container">
 <dl class="dl-horizontal">
   <dt>Prénom</dt>
@@ -23,7 +27,7 @@
   <dd th:text="${user.profile}">${user.profile}</dd>
   
   <dt>Date</dt>
-  <dd th:text="${{user.creationDate}}">${user.creationDate}</dd>
+  <dd th:text="${{user.entityCode}}">${user.creationDate}</dd>
 </dl>
 </div>
 </body>

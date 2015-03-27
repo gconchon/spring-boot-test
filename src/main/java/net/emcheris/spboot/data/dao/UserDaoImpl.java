@@ -9,9 +9,9 @@ import javax.persistence.criteria.Root;
 
 import net.emcheris.spboot.data.entity.User;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -34,8 +34,21 @@ public class UserDaoImpl implements UserDao {
 	  
 	  // Recherche par login
 	  if (!StringUtils.isEmpty(criteria.getLogin())) {
-	  	q.where(cb.like(c.get("login"), criteria.getLogin().trim()));
+	  	String login = criteria.getLogin().trim();
+	  	q.where(cb.like(c.<String>get("login"), "%"+login.toUpperCase()+"%"));
 	  }
+
+	  // Recherche par entité
+	  if (!StringUtils.isEmpty(criteria.getEntityCode())) {
+	  	q.where(cb.equal(c.get("entityCode"), criteria.getEntityCode().trim()));
+	  }
+
+	  // Recherche par nom
+	  if (!StringUtils.isEmpty(criteria.getLastname())) {
+	  	String lastname = criteria.getLastname().trim();
+	  	q.where(cb.like(cb.upper(c.<String>get("lastname")), "%"+lastname.toUpperCase()+"%"));
+	  }
+
 	  
 	  return em.createQuery(q).getResultList();
 	}

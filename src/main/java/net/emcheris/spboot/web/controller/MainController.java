@@ -12,7 +12,7 @@ public class MainController {
 	
     @RequestMapping("/")
     public String home() {
-        return "logon";
+        return "login";
     }
     
 }

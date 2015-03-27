@@ -1,6 +1,5 @@
 package net.emcheris.spboot.web.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -70,12 +71,10 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String searchUsers(Model model) {
-		User criteria = new User();
-		model.addAttribute("criteria", criteria);
-
-		List<User> listUsers = userService.listUsers(new User());
+	public String searchUsers(@ModelAttribute User criteria, Model model) {
+		List<User> listUsers = userService.listUsers(criteria);
 		
+		model.addAttribute("criteria", criteria);
 		model.addAttribute("listUsers", listUsers);
 
 		return "admin/listUsers";

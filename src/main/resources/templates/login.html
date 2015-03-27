@@ -39,37 +39,34 @@
 </head>
 
 <body>
-
 	<div class="container">
 		<div class="reg-block">
-			<form class="form-horizontal" role="form">
-			<div class="reg-block-header">
-				<h2>Connexion à ARUM</h2>
-				<p>Vous n'avez pas de compte ?<br/>Cliquez-ici pour accéder à AFGH</p>
-			</div>
-			
-			<div class="input-group margin-bottom-20">
-				<span class="input-group-addon"><i class="fa fa-user"></i></span>
-	      <input type="text" id="login" class="form-control" placeholder="Identifiant intranet"/>
-	    </div>
-	
-			<div class="input-group margin-bottom-20">
-				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-	      <input type="password" id="password" class="form-control" placeholder="Mot de passe"/>
-	    </div>
-	
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<button type="submit" class="btn-u btn-block">Connexion</button>
+			<form class="form-horizontal" role="form" th:action="@{/login}" method="post">
+				<div class="reg-block-header">
+					<h2>Connexion à ARUM</h2>
+					<p>
+						Vous n'avez pas de compte ?<br />Cliquez-ici pour accéder à AFGH
+					</p>
+					<p th:if="${param.logout}" class="alert">Vous avez été déconnecté</p>
+					<p th:if="${param.error}" class="alert alert-error">Identifiant/Mot de passe incorrect, please try again</p>
 				</div>
-			</div>
+				<div class="input-group margin-bottom-20">
+					<span class="input-group-addon"><i class="fa fa-user"></i></span> 
+					<input type="text" name="username" class="form-control" placeholder="Identifiant intranet" />
+				</div>
+				<div class="input-group margin-bottom-20">
+					<span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+					<input type="password" name="password" class="form-control" placeholder="Mot de passe" />
+				</div>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<input type="submit" class="btn-u btn-block" value="Connexion"/>
+					</div>
+				</div>
 			</form>
 		</div>
-	
-	
 	</div>
-
-<div class="wrapper">
+	<div class="wrapper">
 	<div th:replace="fragments/header :: footer"></div>
 </div>
 

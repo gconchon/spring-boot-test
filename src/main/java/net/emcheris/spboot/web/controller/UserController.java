@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,27 +28,35 @@ public class UserController {
 	private UserService userService;
 
 	/**
+	 * Accès à l'écran de création d'un nouvel utilisateur
+	 * @param model
+	 * @return La redirection vers l'écran de sortie
+	 */
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String initNewUser(Model model) {
+		User user = new User();
+		model.addAttribute("user", user);
+		return "admin/editUser";
+	}
+
+	/**
+	 * Création d'un nouvel utilisateur
 	 * 
+	 * @param user
+	 * @param br
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String greetingForm(Model model) {
-		User user = new User();
-		model.addAttribute("user", user);
-		return "admin/createUser";
-	}
-
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String greetingSubmit(@Valid User user, BindingResult br, Model model) {
+	public String createUser(@Valid User user, BindingResult br, Model model) {
 		if (br.hasErrors()) {
 			LOG.error("Des erreurs se sont produites");
-			return "admin/createUser";
+			return "admin/editUser";
 		}
 
 		userService.saveUser(user);
 		model.addAttribute("user", user);
-		return "admin/viewUser";
+		return "";
 	}
 
 	/**
@@ -58,10 +66,10 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String initSearchUsers(Model model) {
+	public String initSearchUser(Model model) {
 		User criteria = new User();
 		model.addAttribute("criteria", criteria);
-		return "admin/listUsers";
+		return "admin/searchUser";
 	}
 
 	/**
@@ -77,7 +85,22 @@ public class UserController {
 		model.addAttribute("criteria", criteria);
 		model.addAttribute("listUsers", listUsers);
 
-		return "admin/listUsers";
+		return "admin/searchUser";
+	}
+
+	/**
+	 * Modification d'un utilisateur
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	public String editUser(@PathVariable Long userId, Model model) {
+		// Chargement de l'utilisateur
+		User user = userService.getUser(userId);
+		
+		model.addAttribute("user", user);
+		return "admin/editUser";
 	}
 
 }

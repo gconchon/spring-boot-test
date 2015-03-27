@@ -46,8 +46,8 @@
   	<div class="container">
     	<h1 class="pull-left">Gestion des utilisateurs</h1>
       <ul class="pull-right breadcrumb">
-      	<li><a href="index.html">Accueil</a></li>
-				<li><a href="">Administration</a></li>
+      	<li><a th:href="@{/}">Accueil</a></li>
+				<li><a href="#">Administration</a></li>
 				<li class="active">Utilisateurs</li>
 			</ul>
 		</div>
@@ -58,7 +58,7 @@
 	<div class="container content">
 		<div class="panel panel-u margin-bottom-40">
 			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-users"></i> Recherche d'un utilisateur</h3>
+				<h3 class="panel-title"><i class="fa fa-users"></i> Recherche d'un utilisateur dans l'annuaire</h3>
 			</div>
 			<div class="panel-body">
 				<form action="#" th:action="@{/user}" th:object="${criteria}" method="post" class="form-horizontal">
@@ -86,8 +86,6 @@
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" class="btn btn-default marg"><i class="fa fa-search"></i> Rechercher</button>
-						ou				
-						<button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i> Créer un nouvel utilisateur</button>				
 					</div>
 				</div>
 				</form>
@@ -111,12 +109,12 @@
 					</thead>
 					<tbody>
 						<tr th:each="usr : ${listUsers}">
-	        		<td class="col-md-2"><span th:text="${usr.login}"><i class="fa fa-pencil"></i> conchon</span></td>
+	        		<td class="col-md-2"><a th:href="@{/user/{userId}(userId=${usr.id})}"><i class="fa fa-pencil"></i></a> <span th:text="${usr.login}"></span></td>
 	        		<td th:text="${usr.lastname}" class="col-md-2">Conchon</td>
 	        		<td th:text="${usr.firstname}" class="col-md-2">Guillaume</td>
 	        		<td th:text="${usr.email}"  class="col-md-4">Guillaume</td>
 	        		<td th:text="${usr.entityCode}" class="col-m-1">00018</td>
-	        		<td class="col-m-1"><span><i class="fa fa-pencil"></i> conchon</span></td>
+	        		<td class="col-m-1"></td>
 	        	</tr>
 					</tbody>
 				</table>			

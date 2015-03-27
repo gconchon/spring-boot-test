@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+    <title>Recherche d'un utilisateur</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico"/>
+
+    <!-- Web Fonts -->
+    <link rel="shortcut" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin"/>
+    
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet"  th:href="@{/plugins/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet"  th:href="@{/css/style.css}"/>
+
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet"  th:href="@{/css/headers/header-default.css}"/>
+    <link rel="stylesheet"  th:href="@{/css/footers/footer-v1.css}"/>
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet"  th:href="@{/plugins/animate.css}"/>
+    <link rel="stylesheet"  th:href="@{/plugins/line-icons/line-icons.css}"/>
+    <link rel="stylesheet"  th:href="@{/plugins/font-awesome/css/font-awesome.css}"/>
+    
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" th:href="@{/css/pages/page_search_inner_tables.css}"/>
+    <link rel="stylesheet"  th:href="@{/css/pages/page_misc_sticky_footer.css}"/>
+    
+    <!-- CSS Customization -->
+    <link rel="stylesheet"  th:href="@{/css/custom.css}"/>
+</head>
+<body>
+<div class="wrapper">
+	<div th:replace="fragments/header :: navbar"></div>
+	
+	<!--=== Breadcrumbs ===-->
+	<div class="breadcrumbs breadcrumbs-dark">
+  	<div class="container">
+    	<h1 class="pull-left">Gestion des utilisateurs</h1>
+      <ul class="pull-right breadcrumb">
+      	<li><a th:href="@{/}">Accueil</a></li>
+				<li><a href="#">Administration</a></li>
+				<li class="active">Utilisateurs</li>
+			</ul>
+		</div>
+	</div>
+	<!--=== End Breadcrumbs ===-->
+	
+	<!-- Formulaire -->
+	<div class="container content">
+		<div class="panel panel-u margin-bottom-40">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-users"></i> Recherche d'un utilisateur</h3>
+			</div>
+			<div class="panel-body">
+				<form action="#" th:action="@{/user}" th:object="${criteria}" method="post" class="form-horizontal">
+				<div class="form-group">
+					<label for="lastname" class="col-lg-2 control-label">Nom</label>
+					<div class="col-lg-10">
+						<input type="text" th:field="*{lastname}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="login" class="col-lg-2 control-label">Identifiant</label>
+					<div class="col-lg-10">
+						<input type="text" th:field="*{login}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="login" class="col-lg-2 control-label">Entité</label>
+					<div class="col-lg-10">
+						<input type="text" th:field="*{entityCode}" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" class="btn btn-default marg"><i class="fa fa-search"></i> Rechercher</button>
+						ou				
+						<button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i> Créer un nouvel utilisateur</button>				
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="alert alert-success" role="alert" th:if="${listUsers!=null and #lists.isEmpty(listUsers)}">Votre recherche ne retourne aucune donnée</div>
+		
+		<div class="table-search-v1 panel panel-default margin-bottom-40" th:if="${not #lists.isEmpty(listUsers)}">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Login</th>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>E-Mail</th>
+							<th>Entité</th>
+							<th>Profil</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="usr : ${listUsers}">
+	        		<td class="col-md-2"><span th:text="${usr.login}"><i class="fa fa-pencil"></i> conchon</span></td>
+	        		<td th:text="${usr.lastname}" class="col-md-2">Conchon</td>
+	        		<td th:text="${usr.firstname}" class="col-md-2">Guillaume</td>
+	        		<td th:text="${usr.email}"  class="col-md-4">Guillaume</td>
+	        		<td th:text="${usr.entityCode}" class="col-m-1">00018</td>
+	        		<td class="col-m-1"><span><i class="fa fa-pencil"></i> conchon</span></td>
+	        	</tr>
+					</tbody>
+				</table>			
+			</div>
+		</div>
+		
+	</div>
+
+	<div th:replace="fragments/header :: footer"></div>
+</div>
+
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/jquery/jquery-migrate.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/plugins/back-to-top.js}"></script>
+<script th:src="@{/plugins/smoothScroll.js}"></script>
+
+<!-- JS Customization -->
+<script type="text/javascript" th:src="@{/js/custom.js}"></script>
+
+<!-- JS Page Level -->
+<script th:src="@{/js/app.js}"></script>
+<script>
+jQuery(document).ready(function() {
+    App.init();
+});
+</script>
+
+<!--[if lt IE 9]>
+    <script th:src="@{/plugins/respond.js}"></script>
+    <script th:src="@{/plugins/html5shiv.js}"></script>
+    <script th:src="@{/plugins/placeholder-IE-fixes.js}"></script>
+<![endif]-->
+</body>
+</html>

@@ -1,19 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!--[if IE 8]> <html lang="en" class="ie8" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-<link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
-<link rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.min.css}"/>
+    <title>Recherche d'un utilisateur</title>
 
-<script th:src="@{/js/jquery-2.1.3.min.js}"></script>
-<script th:src="@{/js/moment.min.js}"></script>
-<script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
+    <!-- Meta -->
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
 
-<style type="text/css" th:include="fragments/header :: styles"></style>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico"/>
+
+    <!-- Web Fonts -->
+    <link rel="shortcut" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin"/>
+    
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet"  th:href="@{/plugins/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet"  th:href="@{/css/style.css}"/>
+
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet"  th:href="@{/css/headers/header-default.css}"/>
+    <link rel="stylesheet"  th:href="@{/css/footers/footer-v1.css}"/>
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet"  th:href="@{/plugins/animate.css}"/>
+    <link rel="stylesheet"  th:href="@{/plugins/line-icons/line-icons.css}"/>
+    <link rel="stylesheet"  th:href="@{/plugins/font-awesome/css/font-awesome.css}"/>
+    
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" th:href="@{/css/pages/page_search_inner_tables.css}"/>
+    <link rel="stylesheet"  th:href="@{/css/pages/page_misc_sticky_footer.css}"/>
+    
+    <!-- CSS Customization -->
+    <link rel="stylesheet"  th:href="@{/css/custom.css}"/>
 </head>
 <body>
-<div th:replace="fragments/header :: navbar"></div>
+<div class="wrapper">
+	<div th:replace="fragments/header :: navbar"></div>
+	
+	<div th:replace="fragments/header :: footer"></div>
+</div>
+
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/jquery/jquery-migrate.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/plugins/back-to-top.js}"></script>
+<script th:src="@{/plugins/smoothScroll.js}"></script>
+
+<!-- JS Customization -->
+<script type="text/javascript" th:src="@{/js/custom.js}"></script>
+
+<!-- JS Page Level -->
+<script th:src="@{/js/app.js}"></script>
+<script>
+jQuery(document).ready(function() {
+    App.init();
+});
+</script>
+
+<!--[if lt IE 9]>
+    <script th:src="@{/plugins/respond.js}"></script>
+    <script th:src="@{/plugins/html5shiv.js}"></script>
+    <script th:src="@{/plugins/placeholder-IE-fixes.js}"></script>
+<![endif]-->
 </body>
 </html>
